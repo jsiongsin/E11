@@ -1,0 +1,28 @@
+import time
+import board
+import adafruit_bme680
+
+i2c = board.I2C()
+bme680 = adafruit_bme680.Adafruit_BME680_I2C(i2c, debug=False)
+
+temperature_offset = -5
+
+list = []
+
+i = 0
+list.append(time.time())
+while i <= 5:
+	i += 1
+	print("\nTemperature: %0.1f C" % (bme680.temperature + temperature_offset))
+	print("Gas: %d ohm" % bme680.gas)
+	print("Humidity: %0.1f %% bme680.relative_humidity)
+	print("Pressure: %0.3f hPa" % bme680.pressure)
+	print("Altitude = %0.2f meters" % bme680.altitude)
+	list.append((bme680.temperature + temperature_offset))
+	list.append(bme680.gas)
+	list.append(bme680.relative_humidity)
+	list.append(bme680.pressure)
+	list.append(bme680.altitude)
+	
+	time.sleep(2)
+print(list)
