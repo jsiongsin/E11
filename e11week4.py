@@ -57,6 +57,5 @@ writer = csv.writer(file)
 writer.writerow(meta_data)
 
 while True:
-    data = pm25.read()
     data_out = [aqdata["pm10 env"], aqdata["pm25 env"], aqdata["pm100 env"]]
     writer.writerow(data_out)
