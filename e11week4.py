@@ -15,6 +15,13 @@ pm25 = PM25_UART(uart, reset_pin)
 print("Found PM2.5 sensor, reading data...")
 
 i = 0
+
+meta_data = ["Time", "PM1.0", "PM2.5", "PM10"]
+
+file = open("aq_data.csv", "w", newline='')
+writer = csv.writer(file)
+writer.writerow(meta_data)
+
 while i <= 30:
     time.sleep(1)
     i += 1
@@ -49,13 +56,5 @@ while i <= 30:
     print("Particles > 10 um / 0.1L air:", aqdata["particles 100um"])
     print("---------------------------------------")
 
-# stuff from prof 
-meta_data = ["Time", "PM1.0", "PM2.5", "PM10"]
-
-file = open("aq_data.csv", "w", newline='')
-writer = csv.writer(file)
-writer.writerow(meta_data)
-
-while True:
-    data_out = [aqdata["pm10 env"], aqdata["pm25 env"], aqdata["pm100 env"]]
+    data_out = [aqdata["pm10 standard"], aqdata["pm25 standard"], aqdata["pm100 standard"]]
     writer.writerow(data_out)
