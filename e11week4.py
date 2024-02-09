@@ -58,5 +58,5 @@ writer.writerow(meta_data)
 
 while True:
     data = pm25.read()
-    data_out = [data["PM1.0"], data["PM2.5"], data["PM10"]]
+    data_out = [aqdata["pm10 env"], aqdata["pm25 env"], aqdata["pm100 env"]]
     writer.writerow(data_out)
