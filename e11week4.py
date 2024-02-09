@@ -3,18 +3,19 @@ import time
 
 from adafruit_pm25.i2c import PM25_I2C
 
-# meta_data = ["Time", "PM2.5", "PM10"]
+# stuff from prof 
+meta_data = ["Time", "PM1.0", "PM2.5", "PM10"]
 
-# file = open("aq_data.csv", "w", newline='')
-# writer = csv.writer(file)
-# writer.writerow(meta_data)
+file = open("aq_data.csv", "w", newline='')
+writer = csv.writer(file)
+writer.writerow(meta_data)
 
-# while True:
-#     data = pm25.read()
-#     data_out = [now, data["pm2.5"], data["pm10"]]
-#     writer.writerow(data_out)
+while True:
+    data = pm25.read()
+    data_out = [now, data["PM2.5"], data["PM10"]]
+    writer.writerow(data_out)
 
-
+#stuff from github 
 reset_pin = None
 # If you have a GPIO, its not a bad idea to connect it to the RESET pin
 # reset_pin = DigitalInOut(board.G0)
@@ -49,7 +50,8 @@ pm25 = PM25_UART(uart, reset_pin)
 
 print("Found PM2.5 sensor, reading data...")
 
-while True:
+i = 0
+while i <= 30:
     time.sleep(1)
 
     try:
@@ -61,6 +63,7 @@ while True:
 
     print()
     print("Concentration Units (standard)")
+    print("Time: %0.1f" %time.time())
     print("---------------------------------------")
     print(
         "PM 1.0: %d\tPM2.5: %d\tPM10: %d"
