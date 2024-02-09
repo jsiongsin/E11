@@ -56,5 +56,5 @@ while i <= 30:
     print("Particles > 10 um / 0.1L air:", aqdata["particles 100um"])
     print("---------------------------------------")
 
-    data_out = [aqdata["pm10 standard"], aqdata["pm25 standard"], aqdata["pm100 standard"]]
+    data_out = [time.time(), aqdata["pm10 standard"], aqdata["pm25 standard"], aqdata["pm100 standard"]]
     writer.writerow(data_out)
