@@ -17,6 +17,7 @@ print("Found PM2.5 sensor, reading data...")
 i = 0
 while i <= 30:
     time.sleep(1)
+    i += 1
 
     try:
         aqdata = pm25.read()
