@@ -5,25 +5,13 @@ import time
 import serial
 uart = serial.Serial("/dev/ttyS0", baudrate=9600, timeout=0.25)
 
+reset_pin = None
+
 # Connect to a PM2.5 sensor over UART
 from adafruit_pm25.uart import PM25_UART
 pm25 = PM25_UART(uart, reset_pin)
 
-# stuff from prof 
-meta_data = ["Time", "PM1.0", "PM2.5", "PM10"]
-
-file = open("aq_data.csv", "w", newline='')
-writer = csv.writer(file)
-writer.writerow(meta_data)
-
-while True:
-    data = pm25.read()
-    data_out = [data["PM1.0"], data["PM2.5"], data["PM10"]]
-    writer.writerow(data_out)
-
 #stuff from github 
-reset_pin = None
-
 print("Found PM2.5 sensor, reading data...")
 
 i = 0
@@ -59,3 +47,15 @@ while i <= 30:
     print("Particles > 5.0um / 0.1L air:", aqdata["particles 50um"])
     print("Particles > 10 um / 0.1L air:", aqdata["particles 100um"])
     print("---------------------------------------")
+
+# stuff from prof 
+meta_data = ["Time", "PM1.0", "PM2.5", "PM10"]
+
+file = open("aq_data.csv", "w", newline='')
+writer = csv.writer(file)
+writer.writerow(meta_data)
+
+while True:
+    data = pm25.read()
+    data_out = [data["PM1.0"], data["PM2.5"], data["PM10"]]
+    writer.writerow(data_out)
