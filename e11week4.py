@@ -1,7 +1,9 @@
 import csv
 import time
 
-from adafruit_pm25.i2c import PM25_I2C
+# Connect to a PM2.5 sensor over UART
+from adafruit_pm25.uart import PM25_UART
+pm25 = PM25_UART(uart, reset_pin)
 
 # stuff from prof 
 meta_data = ["Time", "PM1.0", "PM2.5", "PM10"]
@@ -12,7 +14,7 @@ writer.writerow(meta_data)
 
 while True:
     data = pm25.read()
-    data_out = [now, data["PM2.5"], data["PM10"]]
+    data_out = [data["PM1.0"], data["PM2.5"], data["PM10"]]
     writer.writerow(data_out)
 
 #stuff from github 
@@ -38,10 +40,6 @@ uart = serial.Serial("/dev/ttyS0", baudrate=9600, timeout=0.25)
 # # For use with USB-to-serial cable:
 # import serial
 # uart = serial.Serial("/dev/ttyUSB0", baudrate=9600, timeout=0.25)
-
-# Connect to a PM2.5 sensor over UART
-from adafruit_pm25.uart import PM25_UART
-pm25 = PM25_UART(uart, reset_pin)
 
 # # Create library object, use 'slow' 100KHz frequency!
 # i2c = busio.I2C(board.SCL, board.SDA, frequency=100000)
