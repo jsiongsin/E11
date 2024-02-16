@@ -28,7 +28,11 @@ uart = serial.Serial("/dev/ttyS0", baudrate=9600, timeout=0.25)
 reset_pin = None
 from adafruit_pm25.uart import PM25_UART
 pm25 = PM25_UART(uart, reset_pin)
-aqdata = pm25.read()
+
+try:
+    aqdata = pm25.read()
+except RuntimeError:
+    print("Unable to read from sensor, retrying...")
 
 data_list = []
 now = time.time()
