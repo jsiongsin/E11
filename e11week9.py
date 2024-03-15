@@ -16,7 +16,7 @@ GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 #     print('Edge detected on channel', channel)
 
 # Callback function to increment count
-def pulse_detected():
+def pulse_detected(self):
     global pulse_count
     pulse_count += 1
     print(time.time())
