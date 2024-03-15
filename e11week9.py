@@ -5,7 +5,7 @@ import RPi.GPIO as GPIO
 pulse_count = 0
 
 # Setup 
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 # # In case the channel is not connected 
