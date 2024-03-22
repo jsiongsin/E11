@@ -9,7 +9,7 @@ start_time = time.time()
 run_time = int(sys.argv[1])
 interval = int(sys.argv[2])
 filename = sys.argv[3]
-file = open(filename,'w',newline='')
+file = open(filename,"w",newline='')
 writer = csv.writer(file)
 
 df = ["Time","Counts"]
