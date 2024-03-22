@@ -31,14 +31,13 @@ GPIO.add_event_detect(17, GPIO.FALLING, callback=pulse_detected)
 
 # Count number of pulses in the last interval
 data = []
-try:
-    while (now-start_time) < run_time:
-        now = time.time()
-        time.sleep(interval)
-        print(f'Pulses detected in the last {interval} sec: {pulse_count}')
-        data = [now,pulse_count]
-        writer.writerow(data)
-        pulse_count = 0
-finally:
-    GPIO.cleanup()
+while (now-start_time) < run_time:
+    now = time.time()
+    time.sleep(interval)
+    print(f'Pulses detected in the last {interval} sec: {pulse_count}')
+    data = [now,pulse_count]
+    writer.writerow(data)
+    pulse_count = 0
+
+file.close()
 
