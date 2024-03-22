@@ -30,6 +30,7 @@ def pulse_detected(self):
 GPIO.add_event_detect(17, GPIO.FALLING, callback=pulse_detected)
 
 # Count number of pulses in the last interval
+data = []
 try:
     while (now-start_time) < run_time:
         now = time.time()
@@ -40,3 +41,4 @@ try:
         pulse_count = 0
 finally:
     GPIO.cleanup()
+
