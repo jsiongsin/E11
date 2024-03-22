@@ -4,6 +4,7 @@ import csv
 import time
 import RPi.GPIO as GPIO
 
+now = time.time()
 start_time = time.time()
 run_time = int(sys.argv[1])
 interval = int(sys.argv[2])
